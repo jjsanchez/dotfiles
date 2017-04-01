@@ -35,6 +35,9 @@ function applyToFocusedWindow(callback)
 	end
 end
 
+--[[---------------------------
+	Arrange all windows 
+--]]---------------------------
 function arrangeAllWindows()
 	local layout = {
 		{apps.spotify.name,  nil, screen, hs.layout.left30,  nil, nil},
@@ -48,7 +51,11 @@ function arrangeAllWindows()
     }
     applyLayout(layout, {apps.spotify, apps.mail}, "All windows arranged")
 end
+hs.urlevent.bind("arrangeAllWindows", arrangeAllWindows)
 
+--[[---------------------------
+	Dev layout 
+--]]---------------------------
 function devLayout()
 	local layout = {
         {apps.intelliJ.name, nil, screen, hs.layout.right70, nil, nil},
@@ -56,18 +63,21 @@ function devLayout()
     }
     applyLayout(layout, {apps.iTerm, apps.intelliJ}, "Dev layout")
 end
-
---[[---------------------------
-	Arrange all windows 
---]]---------------------------
-hs.hotkey.bind(mash, "0", arrangeAllWindows)
-hs.urlevent.bind("arrangeAllWindows", arrangeAllWindows)
-
---[[---------------------------
-	Dev layout 
---]]---------------------------
 hs.hotkey.bind(mash, "9", devLayout)
 hs.urlevent.bind("devLayout", devLayout)
+
+--[[---------------------------
+	Email layout 
+--]]---------------------------
+function emailLayout()
+	local layout = {
+        {apps.mail.name,   nil, screen, hs.layout.left70,  nil, nil},
+        {apps.chrome.name, nil, screen, hs.layout.right30, nil, nil},
+    }
+    applyLayout(layout, {apps.chrome, apps.mail}, "Email layout")
+end
+hs.hotkey.bind(mash, "0", emailLayout)
+hs.urlevent.bind("emailLayout", emailLayout)
 
 --[[---------------------------
 	Full screen 
