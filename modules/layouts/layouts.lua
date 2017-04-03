@@ -13,19 +13,19 @@ local apps = {
 	lync     = { name = "Microsoft Lync", nameOnDisk = "Microsoft Lync"},
 }
 
-function focus(app)
+local function focus(app)
 	-- The name of the app to launcOrFocus should match the name of the application on disk
 	-- see: http://www.hammerspoon.org/docs/hs.application.html#launchOrFocus
 	hs.application.launchOrFocus(app.nameOnDisk)
 end
 
-function applyLayout(layout, appsToFocus, message)
+local function applyLayout(layout, appsToFocus, message)
 	hs.layout.apply(layout)
 	for _, app in pairs(appsToFocus) do focus(app) end
 	hs.alert.show(message)
 end
 
-function applyToFocusedWindow(callback)
+local function applyToFocusedWindow(callback)
 	local app = hs.application.frontmostApplication()
 	if app ~= nil then
 		local win = app:focusedWindow();
@@ -38,7 +38,7 @@ end
 --[[---------------------------
 	Arrange all windows 
 --]]---------------------------
-function arrangeAllWindows()
+local function arrangeAllWindows()
 	local layout = {
 		{apps.spotify.name,  nil, screen, hs.layout.left30,  nil, nil},
         {apps.sublime.name,  nil, screen, hs.layout.left30,  nil, nil},
@@ -56,7 +56,7 @@ hs.urlevent.bind("arrangeAllWindows", arrangeAllWindows)
 --[[---------------------------
 	Dev layout 
 --]]---------------------------
-function devLayout()
+local function devLayout()
 	local layout = {
         {apps.intelliJ.name, nil, screen, hs.layout.right70, nil, nil},
         {apps.iTerm.name,    nil, screen, hs.layout.left30,  nil, nil},
@@ -69,10 +69,10 @@ hs.urlevent.bind("devLayout", devLayout)
 --[[---------------------------
 	Email layout 
 --]]---------------------------
-function emailLayout()
+local function emailLayout()
 	local layout = {
-        {apps.mail.name,   nil, screen, hs.layout.left70,  nil, nil},
-        {apps.chrome.name, nil, screen, hs.layout.right30, nil, nil},
+        {apps.mail.name,   nil, screen, hs.layout.left50,  nil, nil},
+        {apps.chrome.name, nil, screen, hs.layout.right50, nil, nil},
     }
     applyLayout(layout, {apps.chrome, apps.mail}, "Email layout")
 end
