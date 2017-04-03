@@ -1,5 +1,4 @@
 require "modules/layouts/layouts"
-require "modules/pomodoro/pomodoro"
 
 function reloadConfig(files)
     doReload = false
