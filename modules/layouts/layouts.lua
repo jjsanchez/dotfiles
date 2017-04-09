@@ -1,16 +1,17 @@
 hs.window.animationDuration = 0
 
-local screen = hs.screen.allScreens()[1]:name()
 local mash = {"cmd", "ctrl"}
+local leftScreen = hs.screen.allScreens()[1]
+local rightScreen = hs.screen.allScreens()[2]
 local apps = {
-	intelliJ = { name = "IntelliJ IDEA",  nameOnDisk = "IntelliJ IDEA 15 CE"},
-	iTerm    = { name = "iTerm2",         nameOnDisk = "iTerm"},
-	mail     = { name = "Mail",           nameOnDisk = "Mail"},
-	calendar = { name = "Calendar",       nameOnDisk = "Calendar"},
-	spotify  = { name = "Spotify",        nameOnDisk = "Spotify"},
-	sublime  = { name = "Sublime Text 2", nameOnDisk = "Sublime Text 2"},
-	chrome   = { name = "Google Chrome",  nameOnDisk = "Google Chrome"},
-	lync     = { name = "Microsoft Lync", nameOnDisk = "Microsoft Lync"},
+	intelliJ = { name = "IntelliJ IDEA",  nameOnDisk = "IntelliJ IDEA 15 CE", screen = leftScreen},
+	iTerm    = { name = "iTerm2",         nameOnDisk = "iTerm", screen = rightScreen},
+	mail     = { name = "Mail",           nameOnDisk = "Mail", screen = rightScreen},
+	calendar = { name = "Calendar",       nameOnDisk = "Calendar", screen = rightScreen},
+	spotify  = { name = "Spotify",        nameOnDisk = "Spotify", screen = leftScreen},
+	sublime  = { name = "Sublime Text 2", nameOnDisk = "Sublime Text 2", screen = leftScreen},
+	chrome   = { name = "Google Chrome",  nameOnDisk = "Google Chrome", screen = rightScreen},
+	lync     = { name = "Microsoft Lync", nameOnDisk = "Microsoft Lync", screen = leftScreena},
 }
 
 local function focus(app)
@@ -40,14 +41,14 @@ end
 --]]---------------------------
 local function arrangeAllWindows()
 	local layout = {
-		{apps.spotify.name,  nil, screen, hs.layout.left30,  nil, nil},
-        {apps.sublime.name,  nil, screen, hs.layout.left30,  nil, nil},
-        {apps.iTerm.name,    nil, screen, hs.layout.left30,  nil, nil},
-        {apps.lync.name,     nil, screen, hs.layout.left30,  nil, nil},
-        {apps.intelliJ.name, nil, screen, hs.layout.right70, nil, nil},
-        {apps.mail.name,     nil, screen, hs.layout.right70, nil, nil},
-        {apps.calendar.name, nil, screen, hs.layout.right70, nil, nil},
-        {apps.chrome.name,   nil, screen, hs.layout.right70, nil, nil},
+		{apps.spotify.name,  nil, apps.spotify.screen, hs.layout.maximized,  nil, nil},
+        {apps.sublime.name,  nil, apps.sublime.screen, hs.layout.maximized,  nil, nil},
+        {apps.iTerm.name,    nil, apps.iTerm.screen, hs.layout.maximized,  nil, nil},
+        {apps.lync.name,     nil, apps.lync.screen, hs.layout.maximized,  nil, nil},
+        {apps.intelliJ.name, nil, apps.intelliJ.screen, hs.layout.maximized, nil, nil},
+        {apps.mail.name,     nil, apps.mail.screen, hs.layout.left50, nil, nil},
+        {apps.calendar.name, nil, apps.calendar.screen, hs.layout.right50, nil, nil},
+        {apps.chrome.name,   nil, apps.chrome.screen, hs.layout.maximized, nil, nil},
     }
     applyLayout(layout, {apps.spotify, apps.mail}, "All windows arranged")
 end
@@ -58,8 +59,8 @@ hs.urlevent.bind("arrangeAllWindows", arrangeAllWindows)
 --]]---------------------------
 local function devLayout()
 	local layout = {
-        {apps.intelliJ.name, nil, screen, hs.layout.right70, nil, nil},
-        {apps.iTerm.name,    nil, screen, hs.layout.left30,  nil, nil},
+        {apps.intelliJ.name, nil, apps.intelliJscreen, hs.layout.maximized, nil, nil},
+        {apps.iTerm.name,    nil, apps.iTerm.screen, hs.layout.maximized,  nil, nil},
     }
     applyLayout(layout, {apps.iTerm, apps.intelliJ}, "Dev layout")
 end
@@ -71,13 +72,33 @@ hs.urlevent.bind("devLayout", devLayout)
 --]]---------------------------
 local function emailLayout()
 	local layout = {
-        {apps.mail.name,   nil, screen, hs.layout.left50,  nil, nil},
-        {apps.chrome.name, nil, screen, hs.layout.right50, nil, nil},
+        {apps.mail.name,   nil, apps.mail.screen, hs.layout.left50,  nil, nil},
+        {apps.chrome.name, nil, apps.chrome.screen, hs.layout.right50, nil, nil},
     }
     applyLayout(layout, {apps.chrome, apps.mail}, "Email layout")
 end
 hs.hotkey.bind(mash, "0", emailLayout)
 hs.urlevent.bind("emailLayout", emailLayout)
+
+--[[---------------------------
+	Prev screen
+--]]---------------------------
+hs.hotkey.bind({"cmd", "ctrl", "alt"}, "Left", function()
+	applyToFocusedWindow(function(win)
+		local nextScreen = win:screen():previous()
+  		win:moveToScreen(nextScreen)
+	end)
+end)
+
+--[[---------------------------
+	Next screen
+--]]---------------------------
+hs.hotkey.bind({"cmd", "ctrl", "alt"}, "Right", function()
+	applyToFocusedWindow(function(win)
+		local nextScreen = win:screen():next()
+  		win:moveToScreen(nextScreen)
+	end)
+end)
 
 --[[---------------------------
 	Full screen 
