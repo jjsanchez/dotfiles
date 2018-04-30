@@ -39,7 +39,7 @@ local function getMenubarTitle(pomo)
     	local seconds = pomo.secondsLeft % 60
         title = title .. (string.format('%02d:%02d', minutes, seconds))
         if pomo.paused then
-            title = title .. ' (paused)'
+            title = title .. ' - ⏸'
         end
     end
     return title
