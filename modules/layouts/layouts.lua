@@ -4,14 +4,14 @@ local mash = {"cmd", "ctrl"}
 local leftScreen = hs.screen.allScreens()[1]
 local rightScreen = hs.screen.allScreens()[2]
 local apps = {
-	intelliJ = { name = "IntelliJ IDEA",  nameOnDisk = "IntelliJ IDEA 15 CE", screen = leftScreen},
+	intelliJ = { name = "IntelliJ IDEA",  nameOnDisk = "IntelliJ IDEA CE", screen = leftScreen},
 	iTerm    = { name = "iTerm2",         nameOnDisk = "iTerm", screen = rightScreen},
 	mail     = { name = "Mail",           nameOnDisk = "Mail", screen = rightScreen},
 	calendar = { name = "Calendar",       nameOnDisk = "Calendar", screen = rightScreen},
 	spotify  = { name = "Spotify",        nameOnDisk = "Spotify", screen = leftScreen},
-	sublime  = { name = "Sublime Text 2", nameOnDisk = "Sublime Text 2", screen = leftScreen},
+	sublime  = { name = "Sublime Text", nameOnDisk = "Sublime Text", screen = leftScreen},
 	chrome   = { name = "Google Chrome",  nameOnDisk = "Google Chrome", screen = rightScreen},
-	lync     = { name = "Microsoft Lync", nameOnDisk = "Microsoft Lync", screen = leftScreena},
+	chime     = { name = "Amazon Chime", nameOnDisk = "Amazon Chime", screen = leftScreena},
 }
 
 local function focus(app)
@@ -44,7 +44,7 @@ local function arrangeAllWindows()
 		{apps.spotify.name,  nil, apps.spotify.screen, hs.layout.maximized,  nil, nil},
         {apps.sublime.name,  nil, apps.sublime.screen, hs.layout.maximized,  nil, nil},
         {apps.iTerm.name,    nil, apps.iTerm.screen, hs.layout.maximized,  nil, nil},
-        {apps.lync.name,     nil, apps.lync.screen, hs.layout.maximized,  nil, nil},
+        {apps.chime.name,     nil, apps.chime.screen, hs.layout.maximized,  nil, nil},
         {apps.intelliJ.name, nil, apps.intelliJ.screen, hs.layout.maximized, nil, nil},
         {apps.mail.name,     nil, apps.mail.screen, hs.layout.left50, nil, nil},
         {apps.calendar.name, nil, apps.calendar.screen, hs.layout.right50, nil, nil},
@@ -144,6 +144,40 @@ hs.hotkey.bind(mash, "Right", function()
 end)
 
 --[[---------------------------
+	To the Top
+--]]---------------------------
+hs.hotkey.bind(mash, "Up", function()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+  		local screen = win:screen()
+  		local max = screen:frame()
+
+  		f.w = max.w
+  		f.h = max.h / 2
+  		f.x = max.x
+  		f.y = max.y
+  		win:setFrame(f)
+	end)
+end)
+
+--[[---------------------------
+	To the Bottom
+--]]---------------------------
+hs.hotkey.bind(mash, "Down", function()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+  		local screen = win:screen()
+  		local max = screen:frame()
+
+  		f.w = max.w
+  		f.h = max.h / 2
+  		f.x = max.x
+  		f.y = max.y + f.h
+  		win:setFrame(f)
+	end)
+end)
+
+--[[---------------------------
 	Focus Apps
 --]]---------------------------
 hs.hotkey.bind(mash, "S", function() focus(apps.spotify) end)
@@ -153,4 +187,12 @@ hs.hotkey.bind(mash, "M", function() focus(apps.mail) end)
 hs.hotkey.bind(mash, "A", function() focus(apps.calendar) end)
 hs.hotkey.bind(mash, "N", function() focus(apps.sublime) end)
 hs.hotkey.bind(mash, "C", function() focus(apps.chrome) end)
-hs.hotkey.bind(mash, "L", function() focus(apps.lync) end)
+hs.hotkey.bind(mash, "L", function() focus(apps.chime) end)
+
+
+hs.hotkey.bind(mash, "J", function() 
+	hs.window.highlight.start()
+	--hs.window.highlight.toggleIsolate(true) 
+	hs.alert.show("toggle")
+end)
+
