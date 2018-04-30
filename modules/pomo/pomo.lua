@@ -84,13 +84,20 @@ local function stop()
     updateUI()
 end
 
+local function reset()
+    stop()
+    numPomodoros = 0
+    updateUI()
+end
+
 function pomo()
 	menu:setMenu(function()
         return {
           { title=string.format('%d pomodors today', numPomodoros) },
           { title='▶️ - Start', fn=startNew },
           { title='⏹ - Stop', fn=stop },
-          { title='⏸ - Pause', fn=togglePaused }
+          { title='⏸ - Pause', fn=togglePaused },
+          { title='🚫 - Reset', fn=reset }
         }
     end)
 
