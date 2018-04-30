@@ -60,7 +60,12 @@ local function timerCallback()
 end
 
 local function startNew()
-    currentPomo = {secondsLeft=POMO_LENGTH}
+    if (not currentPomo or currentPomo.secondsLeft <= 0) then
+        currentPomo = {secondsLeft=POMO_LENGTH}
+    else 
+        currentPomo.paused = false
+    end
+
     if timer then timer:stop() end
     timer = hs.timer.doEvery(INTERVAL_SECONDS, timerCallback)
     updateUI()
@@ -72,11 +77,19 @@ local function togglePaused()
     updateUI()
 end
 
+local function stop()
+    if not currentPomo then return end
+    if timer then timer:stop() end
+    currentPomo = nil
+    updateUI()
+end
+
 function pomo()
 	menu:setMenu(function()
         return {
           { title=string.format('%d pomodors today', numPomodoros) },
           { title='▶️ - Start', fn=startNew },
+          { title='⏹ - Stop', fn=stop },
           { title='⏸ - Pause', fn=togglePaused }
         }
     end)
@@ -86,3 +99,4 @@ end
 
 hs.urlevent.bind('startPomo', startNew)
 hs.urlevent.bind('pausePomo', togglePaused)
+hs.urlevent.bind('stopPomo', stop)
