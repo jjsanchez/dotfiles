@@ -5,6 +5,7 @@ local BREAK_LENGTH = 5 * 60
 local menu = hs.menubar.new()
 local timer = nil
 local currentPomo = nil
+local numPomodoros = 0
 
 local function completePomo(pomo)
     local n = hs.notify.new({
@@ -17,6 +18,7 @@ local function completePomo(pomo)
     n:send()
 
     currentPomo = nil
+    numPomodoros = numPomodoros + 1
 
     if timer then timer:stop() end
     timer = hs.timer.doAfter(INTERVAL_SECONDS * BREAK_LENGTH, function()
@@ -73,6 +75,7 @@ end
 function pomo()
 	menu:setMenu(function()
         return {
+          { title=string.format('%d pomodors today', numPomodoros) },
           { title='▶️ - Start', fn=startNew },
           { title='⏸ - Pause', fn=togglePaused }
         }
