@@ -1,6 +1,7 @@
 hs.window.animationDuration = 0
 
 local mash = {"cmd", "ctrl"}
+local bigMash = {"cmd", "ctrl", "alt"}
 local leftScreen = hs.screen.allScreens()[1]
 local rightScreen = hs.screen.allScreens()[2]
 local apps = {
@@ -83,7 +84,7 @@ hs.urlevent.bind("emailLayout", emailLayout)
 --[[---------------------------
 	Prev screen
 --]]---------------------------
-hs.hotkey.bind({"cmd", "ctrl", "alt"}, "Left", function()
+hs.hotkey.bind(bigMash, "Left", function()
 	applyToFocusedWindow(function(win)
 		local nextScreen = win:screen():previous()
   		win:moveToScreen(nextScreen)
@@ -93,7 +94,7 @@ end)
 --[[---------------------------
 	Next screen
 --]]---------------------------
-hs.hotkey.bind({"cmd", "ctrl", "alt"}, "Right", function()
+hs.hotkey.bind(bigMash, "Right", function()
 	applyToFocusedWindow(function(win)
 		local nextScreen = win:screen():next()
   		win:moveToScreen(nextScreen)
@@ -173,6 +174,57 @@ hs.hotkey.bind(mash, "Down", function()
   		f.h = max.h / 2
   		f.x = max.x
   		f.y = max.y + f.h
+  		win:setFrame(f)
+	end)
+end)
+
+--[[---------------------------
+	BigScreen: Left
+--]]---------------------------
+hs.hotkey.bind(mash, ",", function()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+  		local screen = win:screen()
+  		local max = screen:frame()
+
+  		f.x = max.x
+  		f.y = max.y
+  		f.w = 3 * (max.w / 12)
+  		f.h = max.h
+  		win:setFrame(f)
+	end)
+end)
+
+--[[---------------------------
+	BigScreen: Right
+--]]---------------------------
+hs.hotkey.bind(mash, "/", function()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+  		local screen = win:screen()
+  		local max = screen:frame()
+
+  		f.w = 3 * (max.w / 12)
+  		f.h = max.h
+  		f.x = max.x + (9 * (max.w / 12))
+  		f.y = max.y
+  		win:setFrame(f)
+	end)
+end)
+
+--[[---------------------------
+	BigScreen: Center
+--]]---------------------------
+hs.hotkey.bind(mash, ".", function()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+  		local screen = win:screen()
+  		local max = screen:frame()
+
+  		f.w = 6 * (max.w / 12)
+  		f.h = max.h
+  		f.x = max.x + (3 * (max.w / 12))
+  		f.y = max.y
   		win:setFrame(f)
 	end)
 end)
