@@ -7,7 +7,7 @@ local rightScreen = hs.screen.allScreens()[2]
 local apps = {
 	intelliJ = { name = "IntelliJ IDEA",  nameOnDisk = "IntelliJ IDEA CE", screen = leftScreen},
 	iTerm    = { name = "iTerm2",         nameOnDisk = "iTerm", screen = rightScreen},
-	mail     = { name = "Mail",           nameOnDisk = "Mail", screen = rightScreen},
+	mail     = { name = "Microsoft Outlook", nameOnDisk = "Microsoft Outlook", screen = rightScreen},
 	calendar = { name = "Calendar",       nameOnDisk = "Calendar", screen = rightScreen},
 	spotify  = { name = "Spotify",        nameOnDisk = "Spotify", screen = leftScreen},
 	sublime  = { name = "Sublime Text", nameOnDisk = "Sublime Text", screen = leftScreen},
