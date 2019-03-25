@@ -1,7 +1,7 @@
 require "modules/layouts/layouts"
-require "modules/pomo/pomo"
+--require "modules/pomo/pomo"
 
-pomo()
+--pomo()
 
 function reloadConfig(files)
     doReload = false
