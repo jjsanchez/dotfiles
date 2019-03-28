@@ -39,7 +39,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "Change insert to command+control+option+shift+i.",
+                                "description": "Change insert to command+control+option+shift+j.",
                                 "from": {
                                     "key_code": "insert",
                                     "modifiers": {
@@ -50,7 +50,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "i",
+                                        "key_code": "j",
                                         "modifiers": [
 					    "left_shift",
                                             "left_command",
@@ -62,7 +62,7 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "Change del to command+control+option+shift+c.",
+                                "description": "Change del to command+control+option+shift+k.",
                                 "from": {
                                     "key_code": "delete_forward",
                                     "modifiers": {
@@ -73,7 +73,7 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "c",
+                                        "key_code": "k",
                                         "modifiers": [
 					    "left_shift",
                                             "left_command",
