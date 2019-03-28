@@ -1,6 +1,7 @@
 require "modules/layouts/layouts"
 local layouts = require "modules/layouts/layouts"
 local flux = require "modules/flux/flux"
+local iterm = require "modules/iterm/iterm"
 
 hs.window.animationDuration = 0
 
@@ -23,3 +24,5 @@ hs.hotkey.bind(hyper, "A", function() layouts.focus(layouts.apps.calendar) end)
 hs.hotkey.bind(hyper, "N", function() layouts.focus(layouts.apps.sublime) end)
 hs.hotkey.bind(hyper, "C", function() layouts.focus(layouts.apps.chrome) end)
 hs.hotkey.bind(hyper, "L", function() layouts.focus(layouts.apps.chime) end)
+
+hs.hotkey.bind(hyper, "N", iterm.newSession)
