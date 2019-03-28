@@ -13,7 +13,7 @@ function iterm.newSession()
 			        write text "cd ~/Development/"
 			        write text "ll"
 			
-			        set othertab to split horizontally with default profile
+			        set othertab to split vertically with default profile
 	        		tell othertab
 	        			write text "cd ~/Development/UI"
 	        			write text "ll"
