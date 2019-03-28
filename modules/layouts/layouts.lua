@@ -89,4 +89,25 @@ function layouts.toBottom()
 	end)
 end
 
+local function applyLayout(layout, appsToFocus, message)
+	hs.layout.apply(layout)
+	for _, app in pairs(appsToFocus) do layouts.focus(app) end
+end
+
+function layouts.devLayout()
+	local layout = {
+        {layouts.apps.intelliJ.name, nil, nil, hs.layout.left50, nil, nil},
+        {layouts.apps.iTerm.name,    nil, nil, hs.layout.right50,  nil, nil},
+    }
+    applyLayout(layout, {layouts.apps.iTerm, layouts.apps.intelliJ}, "Dev layout")
+end
+
+function layouts.emailLayout()
+	local layout = {
+        {layouts.apps.mail.name,   nil, nil, hs.layout.right50,  nil, nil},
+        {layouts.apps.chrome.name, nil, nil, hs.layout.left50, nil, nil},
+    }
+    applyLayout(layout, {layouts.apps.chrome, layouts.apps.mail}, "Email layout")
+end
+
 return layouts
