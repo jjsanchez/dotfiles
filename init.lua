@@ -1,4 +1,3 @@
-require "modules/layouts/layouts"
 local layouts = require "modules/layouts/layouts"
 local flux = require "modules/flux/flux"
 local iterm = require "modules/iterm/iterm"
@@ -10,7 +9,7 @@ local hyper = {"cmd", "ctrl", "alt", "shift"}
 hs.hotkey.bind(hyper, "-", flux.decreaseLevel)
 hs.hotkey.bind(hyper, "=", flux.increaseLevel)
 
-hs.hotkey.bind(hyper, "F", layouts.maximize)
+hs.hotkey.bind(hyper, "return", layouts.maximize)
 hs.hotkey.bind(hyper, "Left", layouts.toLeft)
 hs.hotkey.bind(hyper, "Right", layouts.toRight)
 hs.hotkey.bind(hyper, "Up", layouts.toTop)
