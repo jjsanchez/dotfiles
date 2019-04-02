@@ -33,6 +33,11 @@ function layouts.maximize()
 	end)
 end
 
+-- +-----------------+
+-- |        |        |
+-- |  HERE  |        |
+-- |        |        |
+-- +-----------------+
 function layouts.toLeft()
 	applyToFocusedWindow(function(win)
 		local f = win:frame()
@@ -47,6 +52,11 @@ function layouts.toLeft()
 	end)
 end
 
+-- +-----------------+
+-- |        |        |
+-- |        |  HERE  |
+-- |        |        |
+-- +-----------------+
 function layouts.toRight()
 	applyToFocusedWindow(function(win)
 		local f = win:frame()
@@ -61,6 +71,11 @@ function layouts.toRight()
 	end)
 end
 
+-- +-----------------+
+-- |      HERE       |
+-- +-----------------+
+-- |                 |
+-- +-----------------+
 function layouts.toTop()
 	applyToFocusedWindow(function(win)
 		local f = win:frame()
@@ -75,6 +90,11 @@ function layouts.toTop()
 	end)
 end
 
+-- +-----------------+
+-- |                 |
+-- +-----------------+
+-- |      HERE       |
+-- +-----------------+
 function layouts.toBottom()
 	applyToFocusedWindow(function(win)
 		local f = win:frame()
@@ -86,6 +106,150 @@ function layouts.toBottom()
   		f.x = max.x
   		f.y = max.y + f.h
   		win:setFrame(f)
+	end)
+end
+
+-- +-----------------+
+-- |  HERE  |        |
+-- +--------+        |
+-- |                 |
+-- +-----------------+
+function layouts.upLeft()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:fullFrame()
+	
+		f.x = max.x
+		f.y = max.y
+		f.w = max.w/2
+		f.h = max.h/2
+		win:setFrame(f)
+	end)
+end
+
+-- +-----------------+
+-- |                 |
+-- +--------+        |
+-- |  HERE  |        |
+-- +-----------------+
+function layouts.downLeft(win)
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:fullFrame()
+	
+		f.x = max.x
+		f.y = max.y + (max.h / 2)
+		f.w = max.w/2
+		f.h = max.h/2
+		win:setFrame(f)
+	end)
+  end
+
+-- +-----------------+
+-- |                 |
+-- |        +--------|
+-- |        |  HERE  |
+-- +-----------------+
+function layouts.downRight()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:fullFrame()
+
+		f.x = max.x + (max.w / 2)
+		f.y = max.y + (max.h / 2)
+		f.w = max.w/2
+		f.h = max.h/2
+
+		win:setFrame(f)
+	end)
+end
+
+-- +-----------------+
+-- |        |  HERE  |
+-- |        +--------|
+-- |                 |
+-- +-----------------+
+function layouts.upRight()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:fullFrame()
+	
+		f.x = max.x + (max.w / 2)
+		f.y = max.y
+		f.w = max.w/2
+		f.h = max.h/2
+		win:setFrame(f)
+	end)
+end
+
+function layouts.centerWithFullHeight()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:fullFrame()
+	
+		f.x = max.x + (max.w / 5)
+		f.w = max.w * 3/5
+		f.y = max.y
+		f.h = max.h
+		win:setFrame(f)
+	end)
+end
+
+-- +-----------------+
+-- |      |          |
+-- | HERE |          |
+-- |      |          |
+-- +-----------------+
+function layouts.left40()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:frame()
+	
+		f.x = max.x
+		f.y = max.y
+		f.w = max.w * 0.4
+		f.h = max.h
+		win:setFrame(f)
+	end)
+end
+
+-- +-----------------+
+-- |      |          |
+-- |      |   HERE   |
+-- |      |          |
+-- +-----------------+
+function layouts.right60()
+	applyToFocusedWindow(function(win)
+		local f = win:frame()
+		local screen = win:screen()
+		local max = screen:frame()
+	
+		f.x = max.w * 0.4
+		f.y = max.y
+		f.w = max.w * 0.6
+		f.h = max.h
+		win:setFrame(f)
+	end)
+end
+
+function layouts.nextScreen()
+	applyToFocusedWindow(function(win)
+		local currentScreen = win:screen()
+		local allScreens = hs.screen.allScreens()
+		currentScreenIndex = hs.fnutils.indexOf(allScreens, currentScreen)
+		nextScreenIndex = currentScreenIndex + 1
+	
+		if allScreens[nextScreenIndex] then
+		win:moveToScreen(allScreens[nextScreenIndex])
+		else
+		win:moveToScreen(allScreens[1])
+		end
 	end)
 end
 
