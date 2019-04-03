@@ -73,7 +73,7 @@
                     {
                         "manipulators": [
                             {
-                                "description": "map right shift to closing parenthesis",
+                                "description": "map right shift to underscore",
                                 "type": "basic",
                                 "from": {
                                   "key_code": "right_shift",
@@ -85,7 +85,7 @@
                                 },
                                 "to_if_alone": [
                                   {
-                                    "key_code": "0",
+                                    "key_code": "hyphen",
                                     "modifiers": [
                                       "right_shift"
                                     ]
