@@ -1,0 +1,6 @@
+1) oh-my-zsh -  https://github.com/robbyrussell/oh-my-zsh
+2) Bullet Train - https://github.com/caiogondim/bullet-train.zsh
+3) tomorrow-theme - https://github.com/chriskempson/tomorrow-theme
+4) https://www.material-theme.com/ - Material Oceanic
+5) fzf - https://github.com/junegunn/fzf
+6) diff-so-fancy - https://github.com/so-fancy/diff-so-fancy
