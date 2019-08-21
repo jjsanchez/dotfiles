@@ -1,0 +1,32 @@
+[Core]
+    editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[User]
+	name = Jaime Sanchez
+	email = jaime.sanchez@eventbrite.com
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    ps = push
+    df = diff
+[push]
+    default = simple
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+[color "diff"]
+    meta = yellow
+    frag = magenta bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
