@@ -8,7 +8,8 @@ layouts.apps = {
 	spotify  = { name = "Spotify",        nameOnDisk = "Spotify"},
 	sublime  = { name = "Sublime Text", nameOnDisk = "Sublime Text"},
 	chrome   = { name = "Google Chrome",  nameOnDisk = "Google Chrome"},
-	chime     = { name = "Amazon Chime", nameOnDisk = "Amazon Chime"},
+	chime    = { name = "Amazon Chime", nameOnDisk = "Amazon Chime"},
+	things   = { name = "Things3", nameOnDisk = "Things3"},
 }
 
 function layouts.focus(app)
