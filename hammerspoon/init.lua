@@ -4,7 +4,7 @@ local iterm = require "modules/iterm/iterm"
 
 hs.window.animationDuration = 0
 
-local hyper = {"cmd", "ctrl", "alt", "shift"}
+local hyper = {"ctrl", "alt", "shift"}
 
 hs.hotkey.bind(hyper, "-", flux.decreaseLevel)
 hs.hotkey.bind(hyper, "=", flux.increaseLevel)
@@ -26,5 +26,3 @@ hs.hotkey.bind(hyper, "L", function() layouts.focus(layouts.apps.chime) end)
 
 hs.hotkey.bind(hyper, "k", layouts.devLayout)
 hs.hotkey.bind(hyper, "j", layouts.emailLayout)
-
-hs.hotkey.bind(hyper, "N", iterm.newSession)
