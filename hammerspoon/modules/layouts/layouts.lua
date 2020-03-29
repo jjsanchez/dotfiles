@@ -12,6 +12,13 @@ layouts.apps = {
 	things   = { name = "Things3", nameOnDisk = "Things3"},
 }
 
+local function moveMouseToFocusedWindow()
+	local focusedWindow = hs.window.focusedWindow()
+	local rect = focusedWindow:frame()
+	local center = hs.geometry.rectMidPoint(rect)
+	hs.mouse.setAbsolutePosition(center)
+end
+
 function layouts.focus(app)
 	-- The name of the app to launchOrFocus should match the name of the application on disk
 	-- see: http://www.hammerspoon.org/docs/hs.application.html#launchOrFocus
@@ -21,10 +28,7 @@ function layouts.focus(app)
 	-- Move the pointer of the mouse to the center of the focused window.
 	-- This is good for setups with multiple screens: When you focus an app on a different monitor,
 	-- you don't need to move the mouse all the way there
-	local focusedWindow = hs.window.focusedWindow()
-	local rect = focusedWindow:frame()
-	local center = hs.geometry.rectMidPoint(rect)
-	hs.mouse.setAbsolutePosition(center)
+	moveMouseToFocusedWindow()
 end
 
 local function applyToFocusedWindow(callback)
@@ -260,6 +264,11 @@ function layouts.nextScreen()
 		else
 		win:moveToScreen(allScreens[1])
 		end
+
+		-- Move the pointer of the mouse to the center of the focused window.
+		-- This is good for setups with multiple screens: When you focus an app on a different monitor,
+		-- you don't need to move the mouse all the way there
+		moveMouseToFocusedWindow()
 	end)
 end
 
