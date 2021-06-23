@@ -1,7 +1,7 @@
 local layouts = {}
 
 layouts.apps = {
-	intelliJ = { name = "IntelliJ IDEA",  nameOnDisk = "IntelliJ IDEA CE"},
+	intelliJ = { name = "IntelliJ IDEA",  nameOnDisk = "IntelliJ IDEA"},
 	iTerm    = { name = "iTerm2",         nameOnDisk = "iTerm"},
 	mail     = { name = "Microsoft Outlook", nameOnDisk = "Microsoft Outlook"},
 	calendar = { name = "Calendar",       nameOnDisk = "Calendar"},
@@ -9,7 +9,9 @@ layouts.apps = {
 	sublime  = { name = "Sublime Text", nameOnDisk = "Sublime Text"},
 	chrome   = { name = "Google Chrome",  nameOnDisk = "Google Chrome"},
 	chime    = { name = "Amazon Chime", nameOnDisk = "Amazon Chime"},
+	slack    = { name = "Slack", nameOnDisk = "Slack"},
 	things   = { name = "Things3", nameOnDisk = "Things3"},
+	code   = { name = "Visual Studio Code", nameOnDisk = "Visual Studio Code"},
 }
 
 local function moveMouseToFocusedWindow()
