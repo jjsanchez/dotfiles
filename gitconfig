@@ -1,9 +1,10 @@
 [Core]
     editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
+	excludesfile = /Users/jjsg/.gitignore
 [User]
 	name = Jaime Sanchez
-	email = jaime.sanchez@eventbrite.com
+	email = jjsg@amazon.com
 [alias]
     st = status
     ci = commit

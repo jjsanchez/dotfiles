@@ -12,6 +12,7 @@ layouts.apps = {
 	slack    = { name = "Slack", nameOnDisk = "Slack"},
 	things   = { name = "Things3", nameOnDisk = "Things3"},
 	code   = { name = "Visual Studio Code", nameOnDisk = "Visual Studio Code"},
+	firefox   = { name = "Firefox", nameOnDisk = "Firefox"},
 }
 
 local function moveMouseToFocusedWindow()
